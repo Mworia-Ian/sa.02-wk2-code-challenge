@@ -7,6 +7,12 @@ the same order they appear in the input array? For example if you provide
 an array [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] it should return an array [2, 3, 5, 7].
 */
 
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
 
 
 function findPrime(myArr) {
@@ -31,7 +37,15 @@ function findPrime(myArr) {
         }
     });
     // prints out the final prime array
-    console.log(finalArray);
+    console.log('Prime numbers in the array', finalArray);
 }
 
-findPrime([11, 12, 13, 14, 15, 16, 17, 18, 19, 20])
+function promptUser() {
+    rl.question('Enter numbers separated by spaces: ', (input) => {
+        const myArr = input.split(' ').map(Number);
+        findPrime(myArr);
+        rl.close();
+    });
+}
+
+promptUser();
